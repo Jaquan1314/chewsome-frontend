@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Javaughn",
+      "age": 23,
+      "books": [
+        {
+          "id": 1,
+          "title": "It's nerf or nothing",
+          "total_pages": 400
+        },
+        {
+          "id": 3,
+          "title": "Rainbow Six Seige: Newcomers guide",
+          "total_pages": 150
+        },
+        {
+          "id": 4,
+          "title": "What happens when you intake too much SARMS",
+          "total_pages": 500
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Charlie",
+      "age": 30,
+      "books": [
+        {
+          "id": 2,
+          "title": "Impeach or not to impeach",
+          "total_pages": 1000
+        }
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "It's nerf or nothing",
+      "total_pages": 400,
+      "user": {
+        "id": 1
+      }
+    },
+    {
+      "id": 2,
+      "title": "Impeach or not to impeach",
+      "total_pages": 1000,
+      "user": {
+        "id": 2
+      }
+    },
+    {
+      "id": 3,
+      "title": "Rainbow Six Seige: Newcomers guide",
+      "total_pages": 150,
+      "user": {
+        "id": 1
+      }
+    },
+    {
+      "id": 4,
+      "title": "What happens when you intake too much SARMS",
+      "total_pages": 500,
+      "user": {
+        "id": 1
+      }
+    }
+  ]
+}
