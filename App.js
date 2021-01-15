@@ -1,6 +1,12 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import Landing from './src/screens/Landing';
+import LandingStack from './src/routes/LandingStack';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
-  return <Landing />;
+  return (
+    <NavigationContainer>
+      <LandingStack />
+    </NavigationContainer>
+  );
 }

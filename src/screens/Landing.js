@@ -3,7 +3,7 @@ import { globalStyles } from '../../globalStyles';
 import { Text, TouchableOpacity, View, Modal } from 'react-native';
 import axios from 'axios';
 
-const Landing = () => {
+const Landing = ({ navigation }) => {
   // const url ;
   // useEffect(() => {
   //   axios.get(url).then((resp) => console.log(resp.data));
@@ -29,10 +29,20 @@ const Landing = () => {
           chew
           <Text style={{ fontWeight: '700', color: '#089D8B' }}>some.</Text>
         </Text>
-        <TouchableOpacity style={globalStyles.signinButton}>
+        <TouchableOpacity
+          style={globalStyles.signinButton}
+          onPress={() => {
+            navigation.navigate('Login');
+          }}
+        >
           <Text style={globalStyles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={globalStyles.signupButton}>
+        <TouchableOpacity
+          style={globalStyles.signupButton}
+          onPress={() => {
+            navigation.navigate('SignUp');
+          }}
+        >
           <Text style={globalStyles.buttonText}>Sign up</Text>
         </TouchableOpacity>
       </View>
