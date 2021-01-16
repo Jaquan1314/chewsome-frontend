@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Login = () => {
   return (
@@ -21,21 +22,43 @@ const Login = () => {
           }}
         >
           {(formikProps) => (
-            <View>
+            <View style={{ position: 'relative' }}>
+              <MaterialIcons name="email" size={24} color="black" />
+              <MaterialIcons name="lock" size={24} color="black" />
               <TextInput
-                style={globalStyles.input}
-                placeholder="email"
+                style={{
+                  ...globalStyles.input,
+                  position: 'absolute',
+                  top: 220,
+                  width: '100%',
+                  backgroundColor: '#cccccc',
+                }}
+                placeholder="Email"
+                placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('email')}
                 value={formikProps.values.email}
               />
+
               <TextInput
-                style={globalStyles.input}
-                placeholder="password"
+                style={{
+                  ...globalStyles.input,
+                  position: 'absolute',
+                  top: 280,
+                  width: '100%',
+                  backgroundColor: '#cccccc',
+                }}
+                placeholder="Password"
+                placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('password')}
                 value={formikProps.values.password}
               />
               <TouchableOpacity
-                style={globalStyles.signinButton}
+                style={{
+                  ...globalStyles.signinButton,
+                  position: 'absolute',
+                  top: 340,
+                  width: '100%',
+                }}
                 onPress={formikProps.handleSubmit}
               >
                 <Text style={globalStyles.buttonText}>Login</Text>

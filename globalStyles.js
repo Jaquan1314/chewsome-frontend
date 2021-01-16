@@ -12,11 +12,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    borderWidth: 1,
     borderColor: '#ddd',
-    padding: 10,
+    padding: 14,
     fontSize: 18,
-    borderRadius: 6,
+    borderRadius: 30,
+    textAlign: 'center',
+    width: '100%',
   },
   signinButton: {
     backgroundColor: '#454B4A',
