@@ -14,7 +14,7 @@ export const LandingStack = () => (
       options={{ header: () => null }}
     />
     <Screen name="Login" component={Login} options={{ title: 'Login' }} />
-    <Screen name="SignUp" component={SignUp} options={{ title: 'SignUp' }} />
+    <Screen name="SignUp" component={SignUp} options={{ title: 'Sign Up' }} />
   </Navigator>
 );
 
