@@ -1,9 +1,19 @@
+import {
+  LOG_IN,
+  LOG_OUT,
+  SIGN_UP,
+  GET_RESTAURANTS,
+  ADD_REVIEW,
+  DELETE_REVIEW,
+} from '../actions/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const logIn = (userObj) => (dispatch) => {
   //BEFORE login fetch, check if the userObj being passed is undefined.
   //If so, get the user data from local storage IF there is user data in local storage.
   //If there is no user data in local storage, log in fetch will run.
   if (userObj === undefined) {
-    const userDataStr = localStorage.getItem('USER_DATA');
+    const userDataStr = AsyncStorage.getItem('USER_DATA');
     //user data must be parsed back to JSON
     let userDataObj = JSON.parse(userDataStr);
     if (userDataObj) {
@@ -25,9 +35,9 @@ export const logIn = (userObj) => (dispatch) => {
     .then((r) => r.json())
     .then((data) => {
       if (data.id) {
-        console.log('found user', data);
+        console.log(`Found user ${data.username}`, data);
         //If user was fetched succesfully, user data will be added to local storage
-        localStorage.setItem('USER_DATA', JSON.stringify(data));
+        AsyncStorage.setItem('USER_DATA', JSON.stringify(data));
         dispatch({ type: LOG_IN, payload: data });
       } else {
         console.log('user not found');
@@ -54,7 +64,7 @@ export const signUp = (userObj) => (dispatch) => {
         window.alert('Please Enter a Username and Password');
       } else {
         //this is where the user data gets stored to local storage, only if user creation was succesful. Gets turned from JSON into a string.
-        localStorage.setItem('USER_DATA', JSON.stringify(data));
+        AsyncStorage.setItem('USER_DATA', JSON.stringify(data));
         dispatch({ type: SIGN_UP, payload: data });
       }
     })
