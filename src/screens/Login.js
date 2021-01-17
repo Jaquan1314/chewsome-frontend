@@ -14,6 +14,7 @@ const Login = (props) => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             props.logIn(values);
+            props.navigation.navigate('Home');
           }}
         >
           {(formikProps) => (

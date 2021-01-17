@@ -89,7 +89,7 @@ const SignUp = () => {
                 }}
                 onPress={formikProps.handleSubmit}
               >
-                <Text style={globalStyles.buttonText}>SignUp</Text>
+                <Text style={globalStyles.buttonText}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           )}
