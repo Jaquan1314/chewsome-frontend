@@ -19,6 +19,18 @@ export const globalStyles = StyleSheet.create({
     textAlign: 'center',
     width: '100%',
   },
+  emailIcon: {
+    position: 'absolute',
+    top: 233,
+    left: 30,
+    zIndex: 1,
+  },
+  pwIcon: {
+    position: 'absolute',
+    top: 293,
+    left: 30,
+    zIndex: 1,
+  },
   signinButton: {
     backgroundColor: '#454B4A',
     borderRadius: 30,
