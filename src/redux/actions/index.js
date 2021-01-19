@@ -15,11 +15,12 @@ export const logIn = (userObj) => (dispatch) => {
   if (userObj === undefined) {
     const userDataStr = AsyncStorage.getItem('USER_DATA');
     //user data must be parsed back to JSON
-    let userDataObj = JSON.parse(userDataStr);
-    if (userDataObj) {
-      console.log('user data from local storage', userDataObj);
-      //payload will be sent from local storage to reducers
-      dispatch({ type: LOG_IN, payload: userDataObj });
+    // let userDataObj = JSON.parse(userDataStr);
+    if (userDataStr) {
+      userDataStr.then((value) => {
+        console.log('user data from local storage', value);
+        dispatch({ type: LOG_IN, payload: value });
+      });
     }
     return;
   }
