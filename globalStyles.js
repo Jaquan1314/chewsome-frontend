@@ -46,10 +46,16 @@ export const globalStyles = StyleSheet.create({
     width: '100%',
     // zIndex: 1,
   },
+  logOutButton: {
+    backgroundColor: '#089D8B',
+    borderRadius: 30,
+    padding: 8,
+    width: '50%',
+  },
   buttonText: {
     fontWeight: '900',
     textTransform: 'uppercase',
-    fontSize: 20,
+    fontSize: 17,
     color: 'white',
     textAlign: 'center',
   },
