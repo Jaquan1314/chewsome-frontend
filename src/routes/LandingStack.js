@@ -5,6 +5,7 @@ import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
 import Favorite from '../screens/Favorite';
 import Profile from '../screens/Profile';
+import RestaurantDetails from '../screens/RestaurantDetails';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { connect } from 'react-redux';
@@ -41,6 +42,7 @@ export const LandingStack = (props) => {
         component={MainTabNavigator}
         options={{ headerLeft: null }}
       />
+      <Screen name="Details" component={RestaurantDetails} />
     </Navigator>
   );
 };
