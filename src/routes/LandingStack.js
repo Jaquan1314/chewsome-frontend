@@ -25,7 +25,7 @@ export const LandingStack = (props) => {
   useEffect(() => {
     console.log('Console log in Landing Stack', props);
     props.logIn(undefined);
-  });
+  }, []);
 
   return (
     <Navigator initialRouteName="Landing" headerMode="screen">

@@ -76,3 +76,12 @@ export const logOut = () => {
   AsyncStorage.removeItem('USER_DATA');
   return { type: LOG_OUT };
 };
+
+export const fetchRestaurants = () => (dispatch) => {
+  fetch('http://localhost:3000/api/restaurants')
+    .then((r) => r.json())
+    .then((restaurants) => {
+      console.log(restaurants);
+      dispatch({ type: GET_RESTAURANTS, payload: restaurants });
+    });
+};

@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { FlatList, StyleSheet, SafeAreaView, View, Text } from 'react-native';
 
-const RestaurantCard = (props) => {
-  const { image, location, name, phone, photos, rating, url } = props;
-
+const RestaurantCard = ({ item }) => {
+  console.log('PROPS IN CARD', item);
   return (
     <View style={styles.outLine}>
-      <Text>{name}</Text>
+      <Text>{item.name}</Text>
     </View>
   );
 };
@@ -17,6 +16,6 @@ const styles = StyleSheet.create({
   outLine: {
     backgroundColor: 'green',
     borderRadius: 20,
-    padding: 10,
+    padding: 20,
   },
 });
