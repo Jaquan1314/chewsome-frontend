@@ -1,12 +1,15 @@
 import React from 'react';
-import { FlatList, StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
-const RestaurantCard = ({ item }) => {
-  console.log('PROPS IN CARD', item);
+const RestaurantCard = ({ item, navigation }) => {
+  console.log('PROPS IN CARD');
   return (
-    <View style={styles.outLine}>
+    <TouchableOpacity
+      style={styles.outLine}
+      onPress={() => navigation.navigate('Details', item)}
+    >
       <Text>{item.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
