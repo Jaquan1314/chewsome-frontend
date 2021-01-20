@@ -71,3 +71,8 @@ export const signUp = (userObj) => (dispatch) => {
     })
     .catch(console.log);
 };
+
+export const logOut = () => {
+  AsyncStorage.removeItem('USER_DATA');
+  return { type: LOG_OUT };
+};
