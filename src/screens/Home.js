@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchRestaurants } from '../redux/actions/index';
 import { globalStyles } from '../../globalStyles';
 import RestaurantCard from '../Component/RestaurantCard';
+import SearchForm from '../Component/SearchForm';
 
 const Home = (props) => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const Home = (props) => {
 
   return (
     <SafeAreaView style={''}>
-      <Text>Home Component</Text>
+      <SearchForm />
       <FlatList
         data={props.restaurants}
         renderItem={({ item }) => (

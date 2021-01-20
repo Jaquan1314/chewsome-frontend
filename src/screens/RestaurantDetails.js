@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const RestaurantDetails = ({ route, navigation }) => {
-  console.log('REVIEW DETAILS');
+  // console.log('REVIEW DETAILS');
   const {
     image_url,
     location,
