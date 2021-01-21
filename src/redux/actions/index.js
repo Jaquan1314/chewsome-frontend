@@ -87,6 +87,6 @@ export const fetchRestaurants = () => (dispatch) => {
     .then((r) => r.json())
     .then((data) => {
       // console.log(restaurants);
-      dispatch({ type: GET_RESTAURANTS, payload: data.businesses });
+      dispatch({ type: GET_RESTAURANTS, payload: data });
     });
 };
