@@ -9,10 +9,9 @@ const RestaurantCard = ({ item, navigation }) => {
       onPress={() => navigation.navigate('Details', item)}
     >
       <Text>{item.name}</Text>
-      <Text>{item.location.address1}</Text>
-      <Text>{item.display_phone}</Text>
+      <Text>{item.location}</Text>
+      <Text>{item.phone}</Text>
       <Text>Rating: {item.rating}</Text>
-      <Text>Reviews: {item.review_count}</Text>
     </TouchableOpacity>
   );
 };
