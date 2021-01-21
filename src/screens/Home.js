@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, FlatList, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchRestaurants } from '../redux/actions/index';
 import { globalStyles } from '../../globalStyles';
@@ -12,10 +12,21 @@ const Home = (props) => {
     props.fetchRestaurants();
   }, []);
 
+  // const filteredRestaurants;
+
+  {
+    /**  filter = () => {
+    return this.state.restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(this.state.value.toLowerCase())) 
+  }
+*/
+  }
+
   return (
-    <SafeAreaView style={''}>
-      <SearchForm />
+    <SafeAreaView>
+      <SearchForm restaurants={props.restaurants} />
       <FlatList
+        // horizontal
+        // style={styles.container}
         data={props.restaurants}
         renderItem={({ item }) => (
           <RestaurantCard item={item} navigation={props.navigation} />
@@ -39,3 +50,11 @@ const mdp = (dispatch) => {
 };
 
 export default connect(msp, mdp)(Home);
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // justifyContent: 'center',
+  },
+});

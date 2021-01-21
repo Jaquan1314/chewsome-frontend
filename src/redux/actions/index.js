@@ -5,6 +5,7 @@ import {
   GET_RESTAURANTS,
   ADD_REVIEW,
   DELETE_REVIEW,
+  SEARCH,
 } from '../actions/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -72,16 +73,20 @@ export const signUp = (userObj) => (dispatch) => {
     .catch(console.log);
 };
 
-export const logOut = () => {
+export const logOut = () => (dispatch) => {
   AsyncStorage.removeItem('USER_DATA');
-  return { type: LOG_OUT };
+  return dispatch({ type: LOG_OUT, payload: {} });
+};
+
+export const search = (value) => (dispatch) => {
+  return dispatch({ type: SEARCH, value });
 };
 
 export const fetchRestaurants = () => (dispatch) => {
   fetch('http://localhost:3000/api/restaurants')
     .then((r) => r.json())
-    .then((restaurants) => {
-      console.log(restaurants);
-      dispatch({ type: GET_RESTAURANTS, payload: restaurants });
+    .then((data) => {
+      // console.log(restaurants);
+      dispatch({ type: GET_RESTAURANTS, payload: data.businesses });
     });
 };

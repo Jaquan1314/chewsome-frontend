@@ -6,12 +6,14 @@ import {
   GET_RESTAURANTS,
   ADD_REVIEW,
   DELETE_REVIEW,
+  SEARCH,
 } from '../actions/types';
 
 const initialState = {
-  user: null,
+  user: {},
   reviews: [],
   restaurants: [],
+  value: '',
 };
 
 const userReducer = (state = initialState, action) => {
@@ -21,7 +23,7 @@ const userReducer = (state = initialState, action) => {
     case SIGN_UP:
       return action.payload;
     case LOG_OUT:
-      return null;
+      return action.payload;
     default:
       return state;
   }
@@ -36,7 +38,21 @@ const getRestaurants = (state = initialState, action) => {
   }
 };
 
+const searchReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SEARCH:
+      const { value } = action;
+      const restaurants = state.restaurants.filter((val) =>
+        val.includes(value)
+      );
+      return { ...state, value, restaurants };
+    default:
+      return state;
+  }
+};
+
 export const rootReducer = combineReducers({
   user: userReducer,
   restaurants: getRestaurants,
+  value: searchReducer,
 });
