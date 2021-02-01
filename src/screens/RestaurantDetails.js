@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Linking from 'expo-linking';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import Modal from 'react-native-modal';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { addToFavorite } from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { globalStyles } from '../../globalStyles';
@@ -18,6 +19,13 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
     url,
     reviews,
   } = route.params;
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const allReviews = reviews.map((review) => (
     <Text>
       {review.text} - {review.user.username}
@@ -78,8 +86,36 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           }}
         />
         <Text style={{ textAlign: 'center' }}>{allReviews}</Text>
-        <TouchableOpacity style={{ justifyContent: 'center' }}>
-          <Text style={{ textAlign: 'center' }}>Add a review</Text>
+        <Modal
+          isVisible={isModalVisible}
+          onBackdropPress={() => setModalVisible(false)}
+          style={styles.modal}
+        >
+          <View>
+            <Text>Modal content</Text>
+            <TouchableOpacity onPress={toggleModal}>
+              <Text>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+        <TouchableOpacity
+          style={{
+            justifyContent: 'center',
+            backgroundColor: 'blue',
+            padding: 7,
+            marginLeft: 120,
+            width: '35%',
+          }}
+          onPress={toggleModal}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'white',
+            }}
+          >
+            Add a review
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -101,3 +137,17 @@ const mdp = (dispatch) => {
 };
 
 export default connect(msp, mdp)(RestaurantDetails);
+
+const styles = StyleSheet.create({
+  modal: {
+    flex: 0,
+    backgroundColor: 'white',
+    // justifyContent: 'center',
+    // alignContent: 'center',
+    alignItems: 'center',
+    height: 300,
+    width: 350,
+    marginTop: 300,
+    marginLeft: 35,
+  },
+});
