@@ -3,6 +3,8 @@ import {
   LOG_OUT,
   SIGN_UP,
   GET_RESTAURANTS,
+  ADD_TO_FAVORITE,
+  REMOVE_FROM_FAVORITE,
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
@@ -30,7 +32,7 @@ export const logIn = (userObj) => (dispatch) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accepts: 'application.json',
+      Accept: 'application/json',
     },
     body: JSON.stringify(userObj),
   })
@@ -86,7 +88,28 @@ export const fetchRestaurants = () => (dispatch) => {
   fetch('http://localhost:3000/api/restaurants')
     .then((r) => r.json())
     .then((data) => {
-      // console.log(restaurants);
+      // console.log('INSIDE FETCH', data);
       dispatch({ type: GET_RESTAURANTS, payload: data });
+    })
+    .catch(console.log);
+};
+
+export const addToFavorite = (userId, restaurantId) => (dispatch) => {
+  fetch('http://localhost:3000/api/favorites', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accepts: 'application/json',
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      restaurant_id: restaurantId,
+    }),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      console.log('ADDTOFAVS FETCH', data);
+      dispatch({ type: ADD_TO_FAVORITE, payload: data });
     });
 };
+// export const removeFromFavorite = () => (dispatch) => {};

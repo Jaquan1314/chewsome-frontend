@@ -4,6 +4,8 @@ import {
   LOG_OUT,
   SIGN_UP,
   GET_RESTAURANTS,
+  ADD_TO_FAVORITE,
+  REMOVE_FROM_FAVORITE,
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
@@ -13,6 +15,7 @@ const initialState = {
   user: {},
   reviews: [],
   restaurants: [],
+  favorites: [],
   value: '',
 };
 
@@ -43,9 +46,20 @@ const searchReducer = (state = initialState, action) => {
     case SEARCH:
       const { value } = action;
       const restaurants = state.restaurants.filter((val) =>
-        val.includes(value)
+        val.name.includes(value.toLowerCase())
       );
       return { ...state, value, restaurants };
+    default:
+      return state;
+  }
+};
+
+const favoritesReducer = (state = initialState.favorites, action) => {
+  switch (action.type) {
+    case ADD_TO_FAVORITE:
+      return [action.payload, ...state];
+    case REMOVE_FROM_FAVORITE:
+      return action.payload;
     default:
       return state;
   }
@@ -55,4 +69,5 @@ export const rootReducer = combineReducers({
   user: userReducer,
   restaurants: getRestaurants,
   value: searchReducer,
+  favorites: favoritesReducer,
 });

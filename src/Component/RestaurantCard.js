@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
-const RestaurantCard = ({ item, navigation }) => {
-  // console.log('PROPS IN CARD');
+const RestaurantCard = ({ navigation, item, user }) => {
+  // console.log('PROPS IN CARD', props);
   return (
     <TouchableOpacity
       style={styles.outLine}
-      onPress={() => navigation.navigate('Details', item)}
+      onPress={() => navigation.navigate('Details', item, user)}
     >
       <Text>{item.name}</Text>
       <Text>{item.location}</Text>
@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#089D8B',
     borderRadius: 8,
     padding: 20,
-    width: '100%',
+    width: '80%',
     alignItems: 'center',
     // justifyContent: 'center',
+    marginLeft: 43,
     marginBottom: 10,
   },
 });

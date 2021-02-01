@@ -8,7 +8,7 @@ import SearchForm from '../Component/SearchForm';
 
 const Home = (props) => {
   useEffect(() => {
-    console.log('INSIDE HOME COMPONENT', props);
+    // console.log('INSIDE HOME COMPONENT', props.user);
     props.fetchRestaurants();
   }, []);
 
@@ -27,9 +27,15 @@ const Home = (props) => {
       <FlatList
         // horizontal
         // style={styles.container}
+        keyExtractor={(item) => item.id.toString()}
         data={props.restaurants}
         renderItem={({ item }) => (
-          <RestaurantCard item={item} navigation={props.navigation} />
+          <RestaurantCard
+            key={item.id}
+            item={item}
+            navigation={props.navigation}
+            user={props.user}
+          />
         )}
       />
       {/* <Text>{renderRestaurants()}</Text> */}
@@ -40,6 +46,7 @@ const Home = (props) => {
 const msp = (state) => {
   return {
     restaurants: state.restaurants,
+    user: state.user,
   };
 };
 

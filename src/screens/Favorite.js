@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const Favorite = () => {
+const Favorite = (props) => {
+  console.log('INSIDE FAVORITE SCREEN', props);
   return (
     <View style={styles.container}>
       <Text>Favorite Component</Text>
