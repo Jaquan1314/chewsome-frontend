@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import * as Linking from 'expo-linking';
 import Modal from 'react-native-modal';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import { addToFavorite } from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
+import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../../globalStyles';
-import { TextInput } from 'react-native-gesture-handler';
 
 const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
   console.log('REVIEW DETAILS', route);
@@ -53,7 +60,6 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           <Text style={{ color: 'blue' }}>View more</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={globalStyles.favButton}
           onPress={() => {
             const userId = user.id;
             const restaurantId = id;
@@ -65,10 +71,10 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           <Text
             style={{
               color: 'white',
-              textAlign: 'center',
+              textAlign: 'left',
             }}
           >
-            Add to Favorites
+            <MaterialIcons name="favorite" size={24} color="red" />
           </Text>
         </TouchableOpacity>
       </View>
@@ -93,7 +99,7 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           onBackdropPress={() => setModalVisible(false)}
           style={styles.modal}
           backdropOpacity={0.8}
-          animationIn="zoomInDown"
+          animationIn="zoomInUp"
           animationOut="zoomOutUp"
           animationInTiming={600}
           animationOutTiming={600}
@@ -108,15 +114,33 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
               }
             >
               {(formikProps) => (
-                <View>
+                <View
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                >
                   <TextInput
+                    style={{
+                      ...globalStyles.input,
+                      width: '100%',
+                      backgroundColor: '#cccccc',
+                    }}
                     placeholder="content"
                     placeholderTextColor="white"
                   />
+
+                  <TouchableOpacity
+                    style={{
+                      ...globalStyles.signinButton,
+                      position: 'absolute',
+                      top: 110,
+                      width: 180,
+                    }}
+                    onPress={formikProps.handleSubmit}
+                  >
+                    <Text style={globalStyles.buttonText}>Submit Review</Text>
+                  </TouchableOpacity>
                 </View>
               )}
             </Formik>
-            <Text>Modal content</Text>
             {/* <TouchableOpacity onPress={toggleModal}>
               <Text>Close</Text>
             </TouchableOpacity> */}
