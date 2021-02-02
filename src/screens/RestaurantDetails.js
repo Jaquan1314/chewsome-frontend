@@ -108,7 +108,7 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
         >
           <View>
             <Formik
-              initialValues={{ text: '' }}
+              initialValues={{ text: '', rating: 0 }}
               onSubmit={(values) =>
                 console.log('Submitting my review:', values)
               }
@@ -117,14 +117,35 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
                 <View
                   style={{ justifyContent: 'center', alignItems: 'center' }}
                 >
+                  {/* Content */}
                   <TextInput
                     style={{
-                      ...globalStyles.input,
-                      width: '100%',
-                      backgroundColor: '#cccccc',
+                      borderBottomColor: 'black',
+                      borderBottomWidth: 1,
+                      width: 200,
+                      // backgroundColor: '#cccccc',
                     }}
+                    multiline
                     placeholder="content"
-                    placeholderTextColor="white"
+                    placeholderTextColor="black"
+                    value={formikProps.values.text}
+                    onChangeText={formikProps.handleChange('text')}
+                  />
+
+                  {/* Rating */}
+                  <TextInput
+                    style={{
+                      borderBottomColor: 'black',
+                      borderBottomWidth: 1,
+                      width: '100%',
+                      marginTop: 20,
+                      // backgroundColor: '#cccccc',
+                    }}
+                    keyboardType="numeric"
+                    placeholder="rating"
+                    placeholderTextColor="black"
+                    value={formikProps.values.rating}
+                    onChangeText={formikProps.handleChange('rating')}
                   />
 
                   <TouchableOpacity
