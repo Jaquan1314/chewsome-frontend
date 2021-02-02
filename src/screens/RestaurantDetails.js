@@ -4,7 +4,9 @@ import Modal from 'react-native-modal';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { addToFavorite } from '../redux/actions/index';
 import { connect } from 'react-redux';
+import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
+import { TextInput } from 'react-native-gesture-handler';
 
 const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
   console.log('REVIEW DETAILS', route);
@@ -90,12 +92,34 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           isVisible={isModalVisible}
           onBackdropPress={() => setModalVisible(false)}
           style={styles.modal}
+          backdropOpacity={0.8}
+          animationIn="zoomInDown"
+          animationOut="zoomOutUp"
+          animationInTiming={600}
+          animationOutTiming={600}
+          backdropTransitionInTiming={600}
+          backdropTransitionOutTiming={600}
         >
           <View>
+            <Formik
+              initialValues={{ text: '' }}
+              onSubmit={(values) =>
+                console.log('Submitting my review:', values)
+              }
+            >
+              {(formikProps) => (
+                <View>
+                  <TextInput
+                    placeholder="content"
+                    placeholderTextColor="white"
+                  />
+                </View>
+              )}
+            </Formik>
             <Text>Modal content</Text>
-            <TouchableOpacity onPress={toggleModal}>
+            {/* <TouchableOpacity onPress={toggleModal}>
               <Text>Close</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </Modal>
         <TouchableOpacity
