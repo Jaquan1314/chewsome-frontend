@@ -130,6 +130,6 @@ export const addReview = (userId, restaurantId, rating, text) => (dispatch) => {
     .then((r) => r.json())
     .then((data) => {
       console.log('ADD REVIEW FETCH', data);
-      // dispatch({ type: ADD_REVIEW, payload: data });
+      dispatch({ type: ADD_REVIEW, payload: data });
     });
 };
