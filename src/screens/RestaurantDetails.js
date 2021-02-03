@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { addToFavorite } from '../redux/actions/index';
+import { addReview } from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -45,7 +46,7 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
   };
 
   const arrayOfFavorites = user.favorites;
-  console.log(arrayOfFavorites[0]);
+  console.log(arrayOfFavorites);
 
   return (
     <View>
@@ -109,9 +110,14 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           <View>
             <Formik
               initialValues={{ text: '', rating: 0 }}
-              onSubmit={(values) =>
-                console.log('Submitting my review:', values)
-              }
+              onSubmit={(values) => {
+                const userId = user.id;
+                const restaurantId = id;
+                const { rating, text } = values;
+                // rating, text
+                addReview(userId, restaurantId, rating, text);
+                console.log('Submitting my review:', values);
+              }}
             >
               {(formikProps) => (
                 <View
@@ -195,6 +201,7 @@ const msp = (state) => {
   return {
     favorites: state.favorites,
     user: state.user,
+    reviews: state.reviews,
   };
 };
 
@@ -202,6 +209,8 @@ const mdp = (dispatch) => {
   return {
     addToFavorite: (userId, restaurantId) =>
       dispatch(addToFavorite(userId, restaurantId)),
+    addReview: (userId, restaurantId, rating, text) =>
+      dispatch(addReview(userId, restaurantId, rating, text)),
   };
 };
 
