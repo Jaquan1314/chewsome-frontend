@@ -113,3 +113,23 @@ export const addToFavorite = (userId, restaurantId) => (dispatch) => {
     });
 };
 // export const removeFromFavorite = () => (dispatch) => {};
+export const addReview = (userId, restaurantId, rating, text) => (dispatch) => {
+  fetch('http://localhost:3000/api/reviews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accepts: 'application/json',
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      restaurant_id: restaurantId,
+      rating: rating,
+      text: text,
+    }),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      console.log('ADD REVIEW FETCH', data);
+      // dispatch({ type: ADD_REVIEW, payload: data });
+    });
+};
