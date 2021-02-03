@@ -19,7 +19,7 @@ const initialState = {
   value: '',
 };
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState.user, action) => {
   switch (action.type) {
     case LOG_IN:
       return action.payload;
@@ -32,7 +32,7 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-const getRestaurants = (state = initialState, action) => {
+const getRestaurants = (state = initialState.restaurants, action) => {
   switch (action.type) {
     case GET_RESTAURANTS:
       return action.payload;
@@ -65,9 +65,26 @@ const favoritesReducer = (state = initialState.favorites, action) => {
   }
 };
 
+const reviewsReducer = (state = initialState.reviews, action) => {
+  switch (action.type) {
+    case ADD_REVIEW:
+      return [action.payload, ...state];
+    case DELETE_REVIEW:
+      let newArray = [...state];
+      let indexOfDeleted = newArray.findIndex(
+        (review) => review.id === action.payload
+      );
+      newArray.splice(indexOfDeleted, 1);
+      return newArray;
+    default:
+      return state;
+  }
+};
+
 export const rootReducer = combineReducers({
   user: userReducer,
   restaurants: getRestaurants,
   value: searchReducer,
   favorites: favoritesReducer,
+  reviews: reviewsReducer,
 });
