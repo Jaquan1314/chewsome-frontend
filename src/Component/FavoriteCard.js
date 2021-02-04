@@ -1,15 +1,30 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import { Card, Button } from 'react-native-elements';
 
 const FavoriteCard = (props) => {
   console.log('INSIDE FAV CARD', props);
   const { id, restaurant, user } = props;
   return (
-    <TouchableOpacity style={styles.card}>
-      <Text>{restaurant.name}</Text>
+    <Card key={id} containerStyle={{ width: '80%' }}>
+      <Card.Title>{restaurant.name}</Card.Title>
+      <Card.Divider />
+      <Card.Image source={{ uri: restaurant.image_url }} />
       <Text>{restaurant.location}</Text>
       <Text>{restaurant.phone}</Text>
-    </TouchableOpacity>
+      <Button title="Remove from favorite" />
+    </Card>
+    // <TouchableOpacity style={styles.card}>
+    //   <Text>{restaurant.name}</Text>
+    //   <Text>{restaurant.location}</Text>
+    //   <Text>{restaurant.phone}</Text>
+    // </TouchableOpacity>
   );
 };
 
@@ -17,14 +32,7 @@ export default FavoriteCard;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-  },
-  card: {
-    backgroundColor: 'grey',
-    borderRadius: 8,
-    padding: 20,
-    width: '60%',
   },
 });
