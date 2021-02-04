@@ -5,6 +5,7 @@ import {
   SIGN_UP,
   GET_RESTAURANTS,
   ADD_TO_FAVORITE,
+  GET_FAVORITES,
   REMOVE_FROM_FAVORITE,
   ADD_REVIEW,
   DELETE_REVIEW,
@@ -57,6 +58,8 @@ const searchReducer = (state = initialState, action) => {
 const favoritesReducer = (state = initialState.favorites, action) => {
   switch (action.type) {
     case ADD_TO_FAVORITE:
+      return [action.payload, ...state];
+    case GET_FAVORITES:
       return [action.payload, ...state];
     case REMOVE_FROM_FAVORITE:
       return action.payload;

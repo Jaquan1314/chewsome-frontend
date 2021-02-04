@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 export const MainTabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen name="Home" component={Home} />
-    <Tab.Screen name="Favorite" component={Favorite} />
+    <Tab.Screen name="Favorites" component={Favorite} />
     <Tab.Screen name="Profile" component={Profile} />
   </Tab.Navigator>
 );

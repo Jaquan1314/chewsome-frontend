@@ -8,6 +8,7 @@ import {
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
+  GET_FAVORITES,
 } from '../actions/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -92,6 +93,21 @@ export const fetchRestaurants = () => (dispatch) => {
       dispatch({ type: GET_RESTAURANTS, payload: data });
     })
     .catch(console.log);
+};
+
+export const getFavorites = (userId) => (dispatch) => {
+  fetch('http://localhost:3000/api/favorites')
+    .then((r) => r.json())
+    .then((data) => {
+      data.map((favs) => {
+        if (favs.user.id === userId) {
+          // console.log('CHECKING FAVS', favs);
+          dispatch({ type: GET_FAVORITES, payload: data });
+        } else {
+          return;
+        }
+      });
+    });
 };
 
 export const addToFavorite = (userId, restaurantId) => (dispatch) => {

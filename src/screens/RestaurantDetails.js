@@ -42,10 +42,14 @@ const RestaurantDetails = ({
   };
 
   const allReviews = reviews.map((review) => (
-    <Text>
-      {review.text} - {review.user.username}
-    </Text>
+    <>
+      <Text>
+        {review.text} - {review.user.username}
+      </Text>
+      {'\n'}
+    </>
   ));
+
   const handleLinking = () => {
     Linking.openURL(url);
   };
@@ -122,7 +126,7 @@ const RestaurantDetails = ({
                 actions.resetForm();
                 // rating, text
                 addReview(userId, restaurantId, rating, text);
-                console.log('Submitting my review:', values);
+                // console.log('Submitting my review:', values);
               }}
             >
               {(formikProps) => (
