@@ -102,7 +102,7 @@ export const getFavorites = (userId) => (dispatch) => {
       data.map((favs) => {
         if (favs.user.id === userId) {
           // console.log('CHECKING FAVS', favs);
-          dispatch({ type: GET_FAVORITES, payload: data });
+          dispatch({ type: GET_FAVORITES, payload: favs });
         } else {
           return;
         }
