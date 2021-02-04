@@ -4,13 +4,16 @@ import LandingStack from './src/routes/LandingStack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <LandingStack />
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <LandingStack />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 }
