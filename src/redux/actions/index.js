@@ -57,7 +57,7 @@ export const signUp = (userObj) => (dispatch) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accepts: 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify(userObj),
   })
@@ -97,7 +97,7 @@ export const fetchRestaurants = () => (dispatch) => {
 export const addToFavorite = (userId, restaurantId) => (dispatch) => {
   fetch('http://localhost:3000/api/favorites', {
     method: 'POST',
-    headers: {
+    header: {
       'Content-Type': 'application/json',
       Accepts: 'application/json',
     },
@@ -118,12 +118,12 @@ export const addReview = (userId, restaurantId, rating, text) => (dispatch) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Accepts: 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({
       user_id: userId,
       restaurant_id: restaurantId,
-      rating: rating,
+      rating: parseInt(rating),
       text: text,
     }),
   })

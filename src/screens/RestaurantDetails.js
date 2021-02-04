@@ -9,14 +9,19 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import { addToFavorite } from '../redux/actions/index';
-import { addReview } from '../redux/actions/index';
+import { addToFavorite, addReview } from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../../globalStyles';
 
-const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
+const RestaurantDetails = ({
+  route,
+  navigation,
+  user,
+  addToFavorite,
+  addReview,
+}) => {
   console.log('REVIEW DETAILS', route);
   const {
     id,
@@ -46,7 +51,7 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
   };
 
   const arrayOfFavorites = user.favorites;
-  console.log(arrayOfFavorites);
+  console.log('FAVORITES', arrayOfFavorites);
 
   return (
     <View>
@@ -110,10 +115,11 @@ const RestaurantDetails = ({ route, navigation, user, addToFavorite }) => {
           <View>
             <Formik
               initialValues={{ text: '', rating: 0 }}
-              onSubmit={(values) => {
+              onSubmit={(values, actions) => {
                 const userId = user.id;
                 const restaurantId = id;
                 const { rating, text } = values;
+                actions.resetForm();
                 // rating, text
                 addReview(userId, restaurantId, rating, text);
                 console.log('Submitting my review:', values);
