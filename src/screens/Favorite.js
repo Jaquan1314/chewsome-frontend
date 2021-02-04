@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import FavoriteCard from '../Component/FavoriteCard';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { getFavorites } from '../redux/actions/index';
 import { connect } from 'react-redux';
 
@@ -18,10 +18,10 @@ const Favorite = (props) => {
   ));
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* <Text>Favorite Component</Text> */}
-      <Text>{allFavorites}</Text>
-    </View>
+      <View style={styles.viewCont}>{allFavorites}</View>
+    </ScrollView>
   );
 };
 
@@ -40,9 +40,12 @@ const mdp = (dispatch) => {
 
 export default connect(msp, mdp)(Favorite);
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    // flex: 1,
     flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  viewCont: {
     justifyContent: 'center',
     alignItems: 'center',
   },
