@@ -4,13 +4,14 @@ import {
   SIGN_UP,
   GET_RESTAURANTS,
   ADD_TO_FAVORITE,
-  REMOVE_FROM_FAVORITE,
+  DELETE_FAVORITE,
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
   GET_FAVORITES,
 } from '../actions/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+const baseUrl = 'http://localhost:3000/api';
 
 export const logIn = (userObj) => (dispatch) => {
   //BEFORE login fetch, check if the userObj being passed is undefined.
@@ -29,7 +30,7 @@ export const logIn = (userObj) => (dispatch) => {
     return;
   }
   //normal log in fetch
-  fetch('http://localhost:3000/api/users/login', {
+  fetch(`${baseUrl}/users/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +55,7 @@ export const logIn = (userObj) => (dispatch) => {
 
 //sign up action:
 export const signUp = (userObj) => (dispatch) => {
-  fetch('http://localhost:3000/api/users', {
+  fetch(`${baseUrl}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -86,7 +87,7 @@ export const search = (value) => (dispatch) => {
 };
 
 export const fetchRestaurants = () => (dispatch) => {
-  fetch('http://localhost:3000/api/restaurants')
+  fetch(`${baseUrl}/restaurants`)
     .then((r) => r.json())
     .then((data) => {
       // console.log('INSIDE FETCH', data);
@@ -96,7 +97,7 @@ export const fetchRestaurants = () => (dispatch) => {
 };
 
 export const getFavorites = (userId) => (dispatch) => {
-  fetch('http://localhost:3000/api/favorites')
+  fetch(`${baseUrl}/favorites`)
     .then((r) => r.json())
     .then((data) => {
       data.map((favs) => {
@@ -109,7 +110,7 @@ export const getFavorites = (userId) => (dispatch) => {
 };
 
 export const addToFavorite = (userId, restaurantId) => (dispatch) => {
-  fetch('http://localhost:3000/api/favorites', {
+  fetch(`${baseUrl}/favorites`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -126,9 +127,18 @@ export const addToFavorite = (userId, restaurantId) => (dispatch) => {
       dispatch({ type: ADD_TO_FAVORITE, payload: data });
     });
 };
-// export const removeFromFavorite = () => (dispatch) => {};
+export const deleteFavorite = (favId) => (dispatch) => {
+  fetch(`${baseUrl}/favorites/${favId}`, {
+    method: 'DELETE',
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      dispatch({ type: DELETE_FAVORITE, payload: data });
+      // console.log('DELETE DATA', data);
+    });
+};
 export const addReview = (userId, restaurantId, rating, text) => (dispatch) => {
-  fetch('http://localhost:3000/api/reviews', {
+  fetch(`${baseUrl}/reviews`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
