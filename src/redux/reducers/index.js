@@ -6,7 +6,7 @@ import {
   GET_RESTAURANTS,
   ADD_TO_FAVORITE,
   GET_FAVORITES,
-  REMOVE_FROM_FAVORITE,
+  DELETE_FAVORITE,
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
@@ -61,8 +61,8 @@ const favoritesReducer = (state = initialState.favorites, action) => {
       return [action.payload, ...state];
     case GET_FAVORITES:
       return [action.payload, ...state];
-    case REMOVE_FROM_FAVORITE:
-      return action.payload;
+    case DELETE_FAVORITE:
+      return [...state.filter((favorite) => favorite !== action.payload)];
     default:
       return state;
   }
@@ -73,12 +73,7 @@ const reviewsReducer = (state = initialState.reviews, action) => {
     case ADD_REVIEW:
       return [action.payload, ...state];
     case DELETE_REVIEW:
-      let newArray = [...state];
-      let indexOfDeleted = newArray.findIndex(
-        (review) => review.id === action.payload
-      );
-      newArray.splice(indexOfDeleted, 1);
-      return newArray;
+      return [...state.filter((review) => review !== action.payload)];
     default:
       return state;
   }
