@@ -11,15 +11,14 @@ const Favorite = (props) => {
 
   useEffect(() => {
     getFavorites(user.id);
-  }, [userFavs]);
+  }, []);
 
   const allFavorites = favorites.map((favorite) => (
-    <FavoriteCard {...favorite} />
+    <FavoriteCard key={favorite.id} favoriteObj={favorite} />
   ));
 
   return (
     <ScrollView style={styles.container}>
-      {/* <Text>Favorite Component</Text> */}
       <View style={styles.viewCont}>{allFavorites}</View>
     </ScrollView>
   );
