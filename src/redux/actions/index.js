@@ -103,8 +103,6 @@ export const getFavorites = (userId) => (dispatch) => {
         if (favs.user.id === userId) {
           // console.log('CHECKING FAVS', favs);
           dispatch({ type: GET_FAVORITES, payload: favs });
-        } else {
-          return;
         }
       });
     });
@@ -113,9 +111,9 @@ export const getFavorites = (userId) => (dispatch) => {
 export const addToFavorite = (userId, restaurantId) => (dispatch) => {
   fetch('http://localhost:3000/api/favorites', {
     method: 'POST',
-    header: {
+    headers: {
       'Content-Type': 'application/json',
-      Accepts: 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify({
       user_id: userId,
