@@ -55,7 +55,7 @@ const RestaurantDetails = ({
   };
 
   const arrayOfFavorites = user.favorites;
-  console.log('FAVORITES', arrayOfFavorites);
+  // console.log('FAVORITES', arrayOfFavorites);
 
   return (
     <View>
@@ -74,8 +74,6 @@ const RestaurantDetails = ({
             const userId = user.id;
             const restaurantId = id;
             addToFavorite(userId, restaurantId);
-            // navigation.navigate('Favorite')
-            // window.alert('added to favorites');
           }}
         >
           <Text
@@ -124,7 +122,6 @@ const RestaurantDetails = ({
                 const restaurantId = id;
                 const { rating, text } = values;
                 actions.resetForm();
-                // rating, text
                 addReview(userId, restaurantId, rating, text);
                 // console.log('Submitting my review:', values);
               }}
@@ -178,9 +175,6 @@ const RestaurantDetails = ({
                 </View>
               )}
             </Formik>
-            {/* <TouchableOpacity onPress={toggleModal}>
-              <Text>Close</Text>
-            </TouchableOpacity> */}
           </View>
         </Modal>
         <TouchableOpacity
@@ -230,8 +224,6 @@ const styles = StyleSheet.create({
   modal: {
     flex: 0,
     backgroundColor: 'white',
-    // justifyContent: 'center',
-    // alignContent: 'center',
     alignItems: 'center',
     height: 300,
     width: 350,
