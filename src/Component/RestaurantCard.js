@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
-const RestaurantCard = ({ navigation, item, user }) => {
+const RestaurantCard = ({ navigation, item }) => {
   // console.log('PROPS IN CARD', props);
   return (
     <TouchableOpacity
       style={styles.outLine}
-      onPress={() => navigation.navigate('Details', item, user)}
+      onPress={() => navigation.navigate('Details', item)}
     >
       <Text>{item.name}</Text>
       <Text>{item.location}</Text>
