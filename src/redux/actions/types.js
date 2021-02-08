@@ -2,6 +2,7 @@ export const LOG_IN = 'LOG_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const LOG_OUT = 'LOG_OUT';
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
+export const GET_REVIEWS = 'GET_REVIEWS';
 export const ADD_REVIEW = 'ADD_REVIEW';
 export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
 export const GET_FAVORITES = 'GET_FAVORITES';
