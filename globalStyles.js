@@ -59,13 +59,13 @@ export const globalStyles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-  favButton: {
-    backgroundColor: 'green',
-    borderRadius: 12,
-    padding: 7,
-    width: '35%',
-    marginLeft: 120,
-  },
+  // favButton: {
+  //   backgroundColor: 'green',
+  //   borderRadius: 12,
+  //   padding: 7,
+  //   width: '35%',
+  //   marginLeft: 120,
+  // },
   circleCont: {
     position: 'relative',
   },
