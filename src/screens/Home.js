@@ -22,7 +22,6 @@ const Home = (props) => {
             key={item.id}
             item={item}
             navigation={props.navigation}
-            user={props.user}
           />
         )}
       />
