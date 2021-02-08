@@ -6,6 +6,7 @@ import {
   ADD_TO_FAVORITE,
   DELETE_FAVORITE,
   ADD_REVIEW,
+  GET_REVIEWS,
   DELETE_REVIEW,
   SEARCH,
   GET_FAVORITES,
@@ -127,16 +128,31 @@ export const addToFavorite = (userId, restaurantId) => (dispatch) => {
       dispatch({ type: ADD_TO_FAVORITE, payload: data });
     });
 };
+
 export const deleteFavorite = (favId) => (dispatch) => {
   fetch(`${baseUrl}/favorites/${favId}`, {
     method: 'DELETE',
   })
     .then((r) => r.json())
     .then((data) => {
-      dispatch({ type: DELETE_FAVORITE, payload: data });
-      // console.log('DELETE DATA', data);
+      dispatch({ type: DELETE_FAVORITE, payload: favId });
+      // console.log('DELETE DATA');
     });
 };
+
+export const getRestaurantReviews = (restaurantId) => (dispatch) => {
+  fetch(`${baseUrl}/reviews`)
+    .then((r) => r.json())
+    .then((data) => {
+      // console.log('REVIEWS DATA FETCH', data);
+      data.map((restaurant) => {
+        if (restaurant.id === restaurantId) {
+          dispatch({ type: GET_REVIEWS, payload: restaurant });
+        }
+      });
+    });
+};
+
 export const addReview = (userId, restaurantId, rating, text) => (dispatch) => {
   fetch(`${baseUrl}/reviews`, {
     method: 'POST',
