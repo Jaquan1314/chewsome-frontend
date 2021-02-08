@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Linking from 'expo-linking';
 import Modal from 'react-native-modal';
 import {
@@ -9,7 +9,11 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import { addToFavorite, addReview } from '../redux/actions/index';
+import {
+  addToFavorite,
+  addReview,
+  getRestaurantReviews,
+} from '../redux/actions/index';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -19,7 +23,9 @@ const RestaurantDetails = ({
   route,
   navigation,
   user,
+  reviews,
   addToFavorite,
+  getRestaurantReviews,
   addReview,
 }) => {
   console.log('REVIEW DETAILS', route);
@@ -32,8 +38,14 @@ const RestaurantDetails = ({
     photos,
     rating,
     url,
-    reviews,
   } = route.params;
+
+  const userId = user.id;
+  const restaurantId = id;
+
+  useEffect(() => {
+    getRestaurantReviews(restaurantId);
+  }, []);
 
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -54,9 +66,6 @@ const RestaurantDetails = ({
     Linking.openURL(url);
   };
 
-  const arrayOfFavorites = user.favorites;
-  // console.log('FAVORITES', arrayOfFavorites);
-
   return (
     <View>
       <View>
@@ -71,8 +80,6 @@ const RestaurantDetails = ({
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            const userId = user.id;
-            const restaurantId = id;
             addToFavorite(userId, restaurantId);
           }}
         >
@@ -118,8 +125,6 @@ const RestaurantDetails = ({
             <Formik
               initialValues={{ text: '', rating: 0 }}
               onSubmit={(values, actions) => {
-                const userId = user.id;
-                const restaurantId = id;
                 const { rating, text } = values;
                 actions.resetForm();
                 addReview(userId, restaurantId, rating, text);
@@ -203,7 +208,6 @@ const RestaurantDetails = ({
 
 const msp = (state) => {
   return {
-    favorites: state.favorites,
     user: state.user,
     reviews: state.reviews,
   };
@@ -213,6 +217,8 @@ const mdp = (dispatch) => {
   return {
     addToFavorite: (userId, restaurantId) =>
       dispatch(addToFavorite(userId, restaurantId)),
+    getRestaurantReviews: (restaurantId) =>
+      dispatch(getRestaurantReviews(restaurantId)),
     addReview: (userId, restaurantId, rating, text) =>
       dispatch(addReview(userId, restaurantId, rating, text)),
   };
