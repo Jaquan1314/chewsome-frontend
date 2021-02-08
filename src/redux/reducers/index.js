@@ -10,6 +10,7 @@ import {
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
+  GET_REVIEWS,
 } from '../actions/types';
 
 const initialState = {
@@ -62,7 +63,7 @@ const favoritesReducer = (state = initialState.favorites, action) => {
     case GET_FAVORITES:
       return [action.payload, ...state];
     case DELETE_FAVORITE:
-      return [...state.filter((favorite) => favorite !== action.payload)];
+      return [...state.filter((favorite) => favorite.id !== action.payload)];
     default:
       return state;
   }
@@ -70,6 +71,8 @@ const favoritesReducer = (state = initialState.favorites, action) => {
 
 const reviewsReducer = (state = initialState.reviews, action) => {
   switch (action.type) {
+    case GET_REVIEWS:
+      return action.payload;
     case ADD_REVIEW:
       return [action.payload, ...state];
     case DELETE_REVIEW:
