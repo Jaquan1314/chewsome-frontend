@@ -150,7 +150,7 @@ export const getRestaurantReviews = (restaurantId) => (dispatch) => {
       data.map((review) => {
         if (review.restaurant.id === restaurantId) {
           // console.log('EACH REVIEW FETCH', review);
-          dispatch({ type: ADD_REVIEW, payload: review });
+          dispatch({ type: GET_REVIEWS, payload: review });
         }
       });
     });
