@@ -6,6 +6,7 @@ import {
   ADD_TO_FAVORITE,
   DELETE_FAVORITE,
   ADD_REVIEW,
+  EMPTY_ARR,
   GET_REVIEWS,
   DELETE_REVIEW,
   SEARCH,
@@ -101,6 +102,7 @@ export const getFavorites = (userId) => (dispatch) => {
   fetch(`${baseUrl}/favorites`)
     .then((r) => r.json())
     .then((data) => {
+      dispatch({ type: EMPTY_ARR, payload: [] });
       data.map((favs) => {
         if (favs.user.id === userId) {
           // console.log('CHECKING FAVS', favs);
@@ -144,11 +146,11 @@ export const getRestaurantReviews = (restaurantId) => (dispatch) => {
   fetch(`${baseUrl}/reviews`)
     .then((r) => r.json())
     .then((data) => {
-      // console.log('REVIEWS DATA FETCH', data);
+      dispatch({ type: EMPTY_ARR, payload: [] });
       data.map((review) => {
         if (review.restaurant.id === restaurantId) {
-          // console.log('EACH REVIEW', review);
-          dispatch({ type: GET_REVIEWS, payload: review });
+          // console.log('EACH REVIEW FETCH', review);
+          dispatch({ type: ADD_REVIEW, payload: review });
         }
       });
     });
