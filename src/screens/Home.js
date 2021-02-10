@@ -11,6 +11,7 @@ const Home = (props) => {
     props.fetchRestaurants();
   }, []);
 
+  // console.log('RESTAURANTS', props.restaurants);
   return (
     <SafeAreaView>
       <SearchForm restaurants={props.restaurants} />
