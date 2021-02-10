@@ -72,7 +72,7 @@ const favoritesReducer = (state = initialState.favorites, action) => {
 const reviewsReducer = (state = initialState.reviews, action) => {
   switch (action.type) {
     case GET_REVIEWS:
-      return [action.payload, ...state];
+      return [action.payload];
     case ADD_REVIEW:
       return [action.payload, ...state];
     case DELETE_REVIEW:

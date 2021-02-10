@@ -134,7 +134,7 @@ export const deleteFavorite = (favId) => (dispatch) => {
     method: 'DELETE',
   })
     .then((r) => r.json())
-    .then((data) => {
+    .then(() => {
       dispatch({ type: DELETE_FAVORITE, payload: favId });
       // console.log('DELETE DATA');
     });
@@ -145,9 +145,10 @@ export const getRestaurantReviews = (restaurantId) => (dispatch) => {
     .then((r) => r.json())
     .then((data) => {
       // console.log('REVIEWS DATA FETCH', data);
-      data.map((restaurant) => {
-        if (restaurant.id === restaurantId) {
-          dispatch({ type: GET_REVIEWS, payload: restaurant });
+      data.map((review) => {
+        if (review.restaurant.id === restaurantId) {
+          // console.log('EACH REVIEW', review);
+          dispatch({ type: GET_REVIEWS, payload: review });
         }
       });
     });

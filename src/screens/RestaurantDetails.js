@@ -19,16 +19,19 @@ import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../../globalStyles';
 
-const RestaurantDetails = ({
-  route,
-  navigation,
-  user,
-  reviews,
-  addToFavorite,
-  getRestaurantReviews,
-  addReview,
-}) => {
-  console.log('REVIEW DETAILS', route);
+const RestaurantDetails = (props) => {
+  // console.log('DETAIL PROPS', props);
+  const {
+    route,
+    navigation,
+    user,
+    reviews,
+    addToFavorite,
+    getRestaurantReviews,
+    addReview,
+  } = props;
+  // console.log('REVIEW DETAILS', route);
+  // console.log('REVIEWS FROM REDUX:', reviews);
   const {
     id,
     image_url,
@@ -42,6 +45,7 @@ const RestaurantDetails = ({
 
   const userId = user.id;
   const restaurantId = id;
+  // console.log('RESTAURANT ID:', restaurantId);
 
   useEffect(() => {
     getRestaurantReviews(restaurantId);
@@ -123,7 +127,7 @@ const RestaurantDetails = ({
         >
           <View>
             <Formik
-              initialValues={{ text: '', rating: 0 }}
+              initialValues={{ text: '', rating: '' }}
               onSubmit={(values, actions) => {
                 const { rating, text } = values;
                 actions.resetForm();
