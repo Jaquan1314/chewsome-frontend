@@ -75,6 +75,7 @@ const RestaurantDetails = (props) => {
         imageSrc={{ uri: image_url }}
         title={name}
         contentContainerStyle={{ height: 100 }}
+        activeOpacity={1}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text>{location}</Text>
