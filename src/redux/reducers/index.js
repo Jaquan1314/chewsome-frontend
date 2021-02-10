@@ -7,6 +7,7 @@ import {
   ADD_TO_FAVORITE,
   GET_FAVORITES,
   DELETE_FAVORITE,
+  EMPTY_ARR,
   ADD_REVIEW,
   DELETE_REVIEW,
   SEARCH,
@@ -58,6 +59,8 @@ const searchReducer = (state = initialState, action) => {
 
 const favoritesReducer = (state = initialState.favorites, action) => {
   switch (action.type) {
+    case EMPTY_ARR:
+      return [];
     case ADD_TO_FAVORITE:
       return [action.payload, ...state];
     case GET_FAVORITES:
@@ -71,8 +74,10 @@ const favoritesReducer = (state = initialState.favorites, action) => {
 
 const reviewsReducer = (state = initialState.reviews, action) => {
   switch (action.type) {
+    case EMPTY_ARR:
+      return [];
     case GET_REVIEWS:
-      return [action.payload];
+      return [action.payload, ...state];
     case ADD_REVIEW:
       return [action.payload, ...state];
     case DELETE_REVIEW:
