@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 const Favorite = (props) => {
   const { getFavorites, user, favorites } = props;
   console.log('INSIDE FAVORITE SCREEN', props);
-  const userFavs = user.favorites;
 
   useEffect(() => {
     getFavorites(user.id);
