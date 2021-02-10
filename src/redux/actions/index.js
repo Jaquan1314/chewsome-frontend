@@ -102,7 +102,7 @@ export const getFavorites = (userId) => (dispatch) => {
   fetch(`${baseUrl}/favorites`)
     .then((r) => r.json())
     .then((data) => {
-      dispatch({ type: EMPTY_ARR, payload: [] });
+      // dispatch({ type: EMPTY_ARR, payload: [] });
       data.map((favs) => {
         if (favs.user.id === userId) {
           // console.log('CHECKING FAVS', favs);
@@ -138,6 +138,17 @@ export const deleteFavorite = (favId) => (dispatch) => {
     .then((r) => r.json())
     .then(() => {
       dispatch({ type: DELETE_FAVORITE, payload: favId });
+      // console.log('DELETE DATA');
+    });
+};
+
+export const deleteReview = (reviewId) => (dispatch) => {
+  fetch(`${baseUrl}/reviews/${reviewId}`, {
+    method: 'DELETE',
+  })
+    .then((r) => r.json())
+    .then(() => {
+      dispatch({ type: DELETE_REVIEW, payload: reviewId });
       // console.log('DELETE DATA');
     });
 };

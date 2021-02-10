@@ -59,8 +59,8 @@ const searchReducer = (state = initialState, action) => {
 
 const favoritesReducer = (state = initialState.favorites, action) => {
   switch (action.type) {
-    case EMPTY_ARR:
-      return [];
+    // case EMPTY_ARR:
+    //   return action.payload;
     case ADD_TO_FAVORITE:
       return [action.payload, ...state];
     case GET_FAVORITES:
@@ -81,7 +81,7 @@ const reviewsReducer = (state = initialState.reviews, action) => {
     case ADD_REVIEW:
       return [action.payload, ...state];
     case DELETE_REVIEW:
-      return [...state.filter((review) => review !== action.payload)];
+      return [...state.filter((review) => review.id !== action.payload)];
     default:
       return state;
   }
