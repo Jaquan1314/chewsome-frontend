@@ -10,7 +10,7 @@ const ReviewCard = (props) => {
   const { review, deleteReview, user } = props;
   return (
     <ListItem bottomDivider>
-      <Text>
+      <Text style={{ fontSize: 16 }}>
         {review.text} - {review.user.username}
         {'   '}
         <Rating imageSize={13} readonly startingValue={review.rating} />
