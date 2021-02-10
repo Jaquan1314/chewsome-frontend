@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import * as Linking from 'expo-linking';
 import Modal from 'react-native-modal';
+import ReviewCard from '../Component/ReviewCard';
 import {
   View,
   Text,
   TextInput,
-  Image,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {
   addToFavorite,
@@ -18,12 +19,13 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../../globalStyles';
+import { Card, Tile } from 'react-native-elements';
 
 const RestaurantDetails = (props) => {
   // console.log('DETAIL PROPS', props);
   const {
     route,
-    navigation,
+    // navigation,
     user,
     reviews,
     addToFavorite,
@@ -38,8 +40,8 @@ const RestaurantDetails = (props) => {
     location,
     name,
     phone,
-    photos,
-    rating,
+    // photos,
+    // rating,
     url,
   } = route.params;
 
@@ -58,12 +60,7 @@ const RestaurantDetails = (props) => {
   };
 
   const allReviews = reviews.map((review) => (
-    <>
-      <Text>
-        {review.text} - {review.user.username}
-      </Text>
-      {'\n'}
-    </>
+    <ReviewCard review={review} key={review.id} />
   ));
 
   const handleLinking = () => {
@@ -71,32 +68,40 @@ const RestaurantDetails = (props) => {
   };
 
   return (
-    <View>
-      <View>
-        <Image
-          style={{ width: '100%', height: 400 }}
-          source={{ uri: image_url }}
-        />
-        <Text>{name}</Text>
-        <Text>{location}</Text>
-        <TouchableOpacity onPress={handleLinking}>
-          <Text style={{ color: 'blue' }}>View more</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            addToFavorite(userId, restaurantId);
-          }}
-        >
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'left',
+    <ScrollView style={{ flex: 1 }}>
+      {/* Restaurant Details */}
+      {/* <View> */}
+      <Tile
+        imageSrc={{ uri: image_url }}
+        title={name}
+        contentContainerStyle={{ height: 100 }}
+      >
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text>{location}</Text>
+          <Text>{phone}</Text>
+        </View>
+
+        {/* View more and favorite */}
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={handleLinking}>
+            <Text style={{ color: 'blue' }}>View more</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              addToFavorite(userId, restaurantId);
             }}
           >
-            <MaterialIcons name="favorite" size={24} color="red" />
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+              }}
+            >
+              <MaterialIcons name="favorite" size={24} color="red" />
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Tile>
       <View>
         <Text style={{ textAlign: 'center', fontSize: 15, marginTop: 10 }}>
           Reviews
@@ -112,7 +117,20 @@ const RestaurantDetails = (props) => {
             marginBottom: 20,
           }}
         />
-        <Text style={{ textAlign: 'center' }}>{allReviews}</Text>
+        {reviews.length === 0 ? (
+          <Text
+            style={{
+              textAlign: 'center',
+              color: 'red',
+              fontSize: 16,
+              fontWeight: '600',
+            }}
+          >
+            This Restaurant has no reviews, be the first !
+          </Text>
+        ) : (
+          <Card>{allReviews}</Card>
+        )}
         <Modal
           isVisible={isModalVisible}
           onBackdropPress={() => setModalVisible(false)}
@@ -191,7 +209,8 @@ const RestaurantDetails = (props) => {
             justifyContent: 'center',
             backgroundColor: 'blue',
             padding: 7,
-            marginLeft: 120,
+            marginLeft: 142,
+            marginTop: 10,
             width: '35%',
           }}
           onPress={toggleModal}
@@ -206,7 +225,7 @@ const RestaurantDetails = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
