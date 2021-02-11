@@ -7,24 +7,61 @@ import Favorite from '../screens/Favorite';
 import Profile from '../screens/Profile';
 import RestaurantDetails from '../screens/RestaurantDetails';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { connect } from 'react-redux';
 import { logIn } from '../redux/actions/index';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const { Navigator, Screen } = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export const MainTabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Home" component={Home} />
-    <Tab.Screen name="Favorites" component={Favorite} />
-    <Tab.Screen name="Profile" component={Profile} />
+  <Tab.Navigator
+    activeColor="#089D8B"
+    barStyle={{ backgroundColor: 'white' }}
+    labeled={false}
+    shifting
+  >
+    <Tab.Screen
+      name="Home"
+      component={Home}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color }) => (
+          <MaterialIcons name="home" size={24} color={color} />
+        ),
+        tabBarColor: 'white',
+      }}
+    />
+    <Tab.Screen
+      name="Favorites"
+      component={Favorite}
+      options={{
+        tabBarLabel: 'Favorites',
+        tabBarIcon: ({ color }) => (
+          <MaterialIcons name="favorite" size={24} color={color} />
+        ),
+        tabBarColor: 'lightblue',
+      }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={Profile}
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color }) => (
+          <MaterialIcons name="person" size={24} color={color} />
+        ),
+        tabBarColor: '#454B4A',
+      }}
+    />
   </Tab.Navigator>
 );
 
 export const LandingStack = (props) => {
   useEffect(() => {
-    console.log('Console log in Landing Stack', props);
+    // console.log('Console log in Landing Stack', props);
     props.logIn(undefined);
   }, []);
 
