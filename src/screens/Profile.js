@@ -24,8 +24,8 @@ const Profile = (props) => {
         containerStyle={{ marginBottom: 12 }}
         activeOpacity={0.7}
       />
-      <Text>Username: {props.user.username}</Text>
-      <Text>Email: {props.user.email}</Text>
+      <Text style={{ fontSize: 20 }}>Username: {props.user.username}</Text>
+      <Text style={{ fontSize: 20 }}>Email: {props.user.email}</Text>
       <TouchableOpacity
         style={{ ...globalStyles.logOutButton, marginTop: 12 }}
         onPress={logOut}
