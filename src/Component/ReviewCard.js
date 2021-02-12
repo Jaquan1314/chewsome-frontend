@@ -13,7 +13,7 @@ const ReviewCard = (props) => {
       <Text style={{ fontSize: 16 }}>
         {review.text} - {review.user.username}
         {'   '}
-        <Rating imageSize={13} readonly startingValue={review.rating} />
+        <Rating imageSize={14} readonly startingValue={review.rating} />
       </Text>
       {user.id === review.user.id ? (
         <View
