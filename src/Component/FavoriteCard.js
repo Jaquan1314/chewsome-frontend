@@ -16,6 +16,7 @@ const FavoriteCard = ({ favoriteObj, deleteFavorite }) => {
       <Text>{restaurant.phone}</Text>
       <Button
         title="Remove from favorite"
+        style={{ marginTop: 8 }}
         onPress={() => {
           deleteFavorite(id);
         }}
