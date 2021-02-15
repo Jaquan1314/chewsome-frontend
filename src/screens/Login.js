@@ -1,15 +1,22 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { Input } from 'react-native-elements';
 import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
 import { MaterialIcons } from '@expo/vector-icons';
 import { logIn } from '../redux/actions/index';
 import { connect } from 'react-redux';
+import groupJunkFood from '../../assets/group-junk-food.jpg';
 
 const Login = (props) => {
   return (
     <View style={globalStyles.appContainer}>
       <View stlye={globalStyles.container}>
+        {/* Login Screen Image */}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={groupJunkFood} style={{ width: 350, height: 350 }} />
+        </View>
+        {/* Login Form */}
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
@@ -18,27 +25,24 @@ const Login = (props) => {
           }}
         >
           {(formikProps) => (
-            <View style={{ position: 'relative' }}>
-              <MaterialIcons
-                style={globalStyles.emailIcon}
-                name="email"
-                size={24}
-                color="#454B4A"
-              />
-              <MaterialIcons
-                style={globalStyles.pwIcon}
-                name="lock"
-                size={24}
-                color="#454B4A"
-              />
-              <TextInput
-                style={{
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Input
+                inputContainerStyle={{
                   ...globalStyles.input,
-                  position: 'absolute',
-                  top: 220,
-                  width: '100%',
+                  borderBottomWidth: 0,
                   backgroundColor: '#cccccc',
                 }}
+                inputStyle={{
+                  textAlign: 'center',
+                }}
+                leftIcon={
+                  <MaterialIcons
+                    style={globalStyles.emailIcon}
+                    name="email"
+                    size={24}
+                    color="#454B4A"
+                  />
+                }
                 placeholder="Email"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('email')}
@@ -48,14 +52,23 @@ const Login = (props) => {
                 autoCapitalize="none"
               />
 
-              <TextInput
-                style={{
+              <Input
+                inputStyle={{
+                  textAlign: 'center',
+                }}
+                inputContainerStyle={{
                   ...globalStyles.input,
-                  position: 'absolute',
-                  top: 280,
-                  width: '100%',
+                  borderBottomWidth: 0,
                   backgroundColor: '#cccccc',
                 }}
+                leftIcon={
+                  <MaterialIcons
+                    style={globalStyles.pwIcon}
+                    name="lock"
+                    size={24}
+                    color="#454B4A"
+                  />
+                }
                 placeholder="Password"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('password')}
@@ -67,9 +80,6 @@ const Login = (props) => {
               <TouchableOpacity
                 style={{
                   ...globalStyles.signinButton,
-                  position: 'absolute',
-                  top: 340,
-                  width: '100%',
                 }}
                 onPress={formikProps.handleSubmit}
               >
