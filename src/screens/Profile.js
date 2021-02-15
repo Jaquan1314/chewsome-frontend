@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { globalStyles } from '../../globalStyles';
 import { connect } from 'react-redux';
@@ -16,6 +21,7 @@ const Profile = (props) => {
 
   return (
     <View style={globalStyles.container}>
+      {/* User Avatar */}
       <Avatar
         rounded
         size="large"
@@ -24,7 +30,13 @@ const Profile = (props) => {
         containerStyle={{ marginBottom: 12 }}
         activeOpacity={0.7}
       />
-      <Text style={{ fontSize: 20 }}>Username: {props.user.username}</Text>
+      {/* Username */}
+      <TouchableWithoutFeedback
+        onPress={() => console.log('Why are you trying to edit me!')}
+      >
+        <Text style={{ fontSize: 20 }}>Username: {props.user.username}</Text>
+      </TouchableWithoutFeedback>
+      {/* Email */}
       <Text style={{ fontSize: 20 }}>Email: {props.user.email}</Text>
       <TouchableOpacity
         style={{ ...globalStyles.logOutButton, marginTop: 12 }}
