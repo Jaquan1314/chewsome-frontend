@@ -17,7 +17,7 @@ const Favorite = (props) => {
   ));
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={{ ...styles.container, backgroundColor: '#fff' }}>
       <View style={styles.viewCont}>{allFavorites}</View>
     </ScrollView>
   );

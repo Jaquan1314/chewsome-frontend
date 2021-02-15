@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, FlatList, Text } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchRestaurants } from '../redux/actions/index';
 import RestaurantCard from '../Component/RestaurantCard';
@@ -13,7 +13,7 @@ const Home = (props) => {
 
   // console.log('RESTAURANTS', props.restaurants);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <SearchForm restaurants={props.restaurants} />
       <FlatList
         keyExtractor={(item) => item.id.toString()}

@@ -20,7 +20,7 @@ const Profile = (props) => {
   console.log(props.user);
 
   return (
-    <View style={globalStyles.container}>
+    <View style={{ ...globalStyles.container, backgroundColor: '#fff' }}>
       {/* User Avatar */}
       <Avatar
         rounded
