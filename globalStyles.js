@@ -12,23 +12,26 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    borderColor: '#ddd',
-    padding: 14,
     fontSize: 18,
     borderRadius: 30,
-    textAlign: 'center',
     width: '100%',
+  },
+  userIcon: {
+    position: 'absolute',
+    top: 8,
+    left: 25,
+    zIndex: 1,
   },
   emailIcon: {
     position: 'absolute',
-    top: 233,
-    left: 30,
+    top: 8,
+    left: 25,
     zIndex: 1,
   },
   pwIcon: {
     position: 'absolute',
-    top: 293,
-    left: 30,
+    top: 8,
+    left: 25,
     zIndex: 1,
   },
   signinButton: {
@@ -36,9 +39,7 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 30,
     padding: 14,
     width: 340,
-    // marginTop: 70,
     marginBottom: 15,
-    // zIndex: 1,
   },
   googleSigninButton: {
     backgroundColor: '#35baf6',
@@ -52,13 +53,12 @@ export const globalStyles = StyleSheet.create({
     padding: 14,
     width: 340,
     marginBottom: 15,
-    // zIndex: 1,
   },
   logOutButton: {
     backgroundColor: '#089D8B',
     borderRadius: 30,
     padding: 8,
-    width: 340,
+    width: 230,
   },
   buttonText: {
     fontWeight: '900',
