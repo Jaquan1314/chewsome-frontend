@@ -1,15 +1,22 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { Input } from 'react-native-elements';
 import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
 import { MaterialIcons } from '@expo/vector-icons';
 import { signUp } from '../redux/actions/index';
 import { connect } from 'react-redux';
+import manWithChicken from '../../assets/man-with-chicken.jpg';
 
 const SignUp = () => {
   return (
     <View style={globalStyles.appContainer}>
       <View stlye={globalStyles.container}>
+        {/* SignUp Screen Image */}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={manWithChicken} style={{ width: 350, height: 350 }} />
+        </View>
+        {/* SignUp Form */}
         <Formik
           initialValues={{ username: '', email: '', password: '' }}
           onSubmit={(values) => {
@@ -17,27 +24,25 @@ const SignUp = () => {
           }}
         >
           {(formikProps) => (
-            <View style={{ position: 'relative' }}>
-              <MaterialIcons
-                style={globalStyles.emailIcon}
-                name="email"
-                size={24}
-                color="#454B4A"
-              />
-              <MaterialIcons
-                style={globalStyles.pwIcon}
-                name="lock"
-                size={24}
-                color="#454B4A"
-              />
-              <TextInput
-                style={{
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              {/* Username Input */}
+              <Input
+                inputContainerStyle={{
                   ...globalStyles.input,
-                  position: 'absolute',
-                  top: 210,
-                  width: '100%',
+                  borderBottomWidth: 0,
                   backgroundColor: '#cccccc',
                 }}
+                inputStyle={{
+                  textAlign: 'center',
+                }}
+                leftIcon={
+                  <MaterialIcons
+                    style={globalStyles.userIcon}
+                    name="account-box"
+                    size={24}
+                    color="#454B4A"
+                  />
+                }
                 placeholder="Username"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('username')}
@@ -46,15 +51,24 @@ const SignUp = () => {
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
-
-              <TextInput
-                style={{
+              {/* Email Input */}
+              <Input
+                inputContainerStyle={{
                   ...globalStyles.input,
-                  position: 'absolute',
-                  top: 270,
-                  width: '100%',
+                  borderBottomWidth: 0,
                   backgroundColor: '#cccccc',
                 }}
+                inputStyle={{
+                  textAlign: 'center',
+                }}
+                leftIcon={
+                  <MaterialIcons
+                    style={globalStyles.emailIcon}
+                    name="email"
+                    size={24}
+                    color="#454B4A"
+                  />
+                }
                 placeholder="Email"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('email')}
@@ -63,15 +77,24 @@ const SignUp = () => {
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
-
-              <TextInput
-                style={{
+              {/* Password Input */}
+              <Input
+                inputContainerStyle={{
                   ...globalStyles.input,
-                  position: 'absolute',
-                  top: 330,
-                  width: '100%',
+                  borderBottomWidth: 0,
                   backgroundColor: '#cccccc',
                 }}
+                inputStyle={{
+                  textAlign: 'center',
+                }}
+                leftIcon={
+                  <MaterialIcons
+                    style={globalStyles.pwIcon}
+                    name="lock"
+                    size={24}
+                    color="#454B4A"
+                  />
+                }
                 placeholder="Password"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('password')}
@@ -83,9 +106,6 @@ const SignUp = () => {
               <TouchableOpacity
                 style={{
                   ...globalStyles.signupButton,
-                  position: 'absolute',
-                  top: 390,
-                  width: '100%',
                 }}
                 onPress={formikProps.handleSubmit}
               >
