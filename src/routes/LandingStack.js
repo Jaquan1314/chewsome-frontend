@@ -70,7 +70,7 @@ export const LandingStack = (props) => {
       <Screen
         name="Welcome"
         component={Landing}
-        options={{ header: () => null }}
+        options={{ header: () => null, cardStyle: { backgroundColor: '#fff' } }}
       />
       <Screen name="Login" component={Login} options={{ title: 'Login' }} />
       <Screen name="SignUp" component={SignUp} options={{ title: 'Sign Up' }} />
