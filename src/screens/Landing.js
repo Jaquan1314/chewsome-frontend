@@ -2,7 +2,7 @@ import React from 'react';
 import { globalStyles } from '../../globalStyles';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import signInWithGoogleAsync from '../redux/actions/index';
-import hotDogSoda from '../../assets/hot_dog_soda.jpg';
+import hotDogSoda from '../../assets/hot-dog-soda.jpg';
 
 const signInWithGoogle = () => {
   signInWithGoogleAsync();
