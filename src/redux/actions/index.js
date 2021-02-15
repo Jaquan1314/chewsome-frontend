@@ -13,7 +13,28 @@ import {
   GET_FAVORITES,
 } from '../actions/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Google from 'expo-google-app-auth';
+import { IOS_CLIENT_ID } from '@env';
+
 const baseUrl = 'http://localhost:3000/api';
+
+export default async function signInWithGoogleAsync() {
+  try {
+    const result = await Google.logInAsync({
+      behavior: 'web',
+      iosClientId: IOS_CLIENT_ID,
+      scopes: ['profile', 'email'],
+    });
+
+    if (result.type === 'success') {
+      console.log(result);
+    } else {
+      return { cancelled: true };
+    }
+  } catch (e) {
+    return { error: true };
+  }
+}
 
 export const logIn = (userObj) => (dispatch) => {
   //BEFORE login fetch, check if the userObj being passed is undefined.
