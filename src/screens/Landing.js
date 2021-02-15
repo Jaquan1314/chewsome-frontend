@@ -1,50 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { globalStyles } from '../../globalStyles';
-import { Text, TouchableOpacity, View, Modal } from 'react-native';
-import axios from 'axios';
+import { Text, TouchableOpacity, View, Image } from 'react-native';
+import signInWithGoogleAsync from '../redux/actions/index';
+import hotDogSoda from '../../assets/hot_dog_soda.jpg';
+
+const signInWithGoogle = () => {
+  signInWithGoogleAsync();
+};
 
 const Landing = ({ navigation }) => {
-  // const url ;
-  // useEffect(() => {
-  //   axios.get(url).then((resp) => console.log(resp.data));
-  // }, []);
-
   return (
     <View style={globalStyles.appContainer}>
-      <View style={globalStyles.circleCont}>
-        <View style={globalStyles.turquoiseCircle} opacity={0.3} />
-        <View style={globalStyles.turqCircle} opacity={0.2} />
-        <View style={globalStyles.smallCircle} opacity={0.2} />
-      </View>
-      <View style={{ ...globalStyles.container, position: 'relative' }}>
-        <Text
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {/* chewsome application title */}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text
+            style={{
+              fontSize: 40,
+              // position: 'absolute',
+              fontWeight: '300',
+              // bottom: 110,
+              textAlign: 'center',
+            }}
+          >
+            chew
+            <Text style={{ fontWeight: '700', color: '#089D8B' }}>some.</Text>
+          </Text>
+        </View>
+        {/* Image */}
+        <View
           style={{
-            fontSize: 36,
-            position: 'absolute',
-            fontWeight: '300',
-            bottom: 510,
-            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          chew
-          <Text style={{ fontWeight: '700', color: '#089D8B' }}>some.</Text>
-        </Text>
-        <TouchableOpacity
-          style={globalStyles.signinButton}
-          onPress={() => {
-            navigation.navigate('Login');
-          }}
-        >
-          <Text style={globalStyles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={globalStyles.signupButton}
-          onPress={() => {
-            navigation.navigate('SignUp');
-          }}
-        >
-          <Text style={globalStyles.buttonText}>Sign up</Text>
-        </TouchableOpacity>
+          <Image
+            source={hotDogSoda}
+            style={{
+              width: 400,
+              height: 400,
+            }}
+          />
+        </View>
+        {/* Login/Signup buttons */}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity
+            style={globalStyles.signinButton}
+            onPress={() => {
+              navigation.navigate('Login');
+            }}
+          >
+            <Text style={globalStyles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.signupButton}
+            onPress={() => {
+              navigation.navigate('SignUp');
+            }}
+          >
+            <Text style={globalStyles.buttonText}>Sign up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.googleSigninButton}
+            onPress={() => {
+              signInWithGoogle();
+              // console.log('Getting clicked!');
+            }}
+          >
+            <Text style={globalStyles.buttonText}>Sign in with Google</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
