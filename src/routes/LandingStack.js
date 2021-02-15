@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Landing from '../screens/Landing';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
@@ -72,14 +72,26 @@ export const LandingStack = (props) => {
         component={Landing}
         options={{ header: () => null, cardStyle: { backgroundColor: '#fff' } }}
       />
-      <Screen name="Login" component={Login} options={{ title: 'Login' }} />
-      <Screen name="SignUp" component={SignUp} options={{ title: 'Sign Up' }} />
+      <Screen
+        name="Login"
+        component={Login}
+        options={{ title: 'Login', cardStyle: { backgroundColor: '#fff' } }}
+      />
+      <Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ title: 'Sign Up', cardStyle: { backgroundColor: '#fff' } }}
+      />
       <Screen
         name="Home"
         component={MainTabNavigator}
-        options={{ headerLeft: null }}
+        options={{ headerLeft: null, cardStyle: { backgroundColor: '#fff' } }}
       />
-      <Screen name="Details" component={RestaurantDetails} />
+      <Screen
+        name="Details"
+        component={RestaurantDetails}
+        options={{ cardStyle: { backgroundColor: '#fff' } }}
+      />
     </Navigator>
   );
 };
