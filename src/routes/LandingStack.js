@@ -29,7 +29,7 @@ export const MainTabNavigator = () => (
       options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (
-          <MaterialIcons name="home" size={24} color={color} />
+          <MaterialIcons name="home" size={29} color={color} />
         ),
         tabBarColor: 'white',
       }}
@@ -40,7 +40,7 @@ export const MainTabNavigator = () => (
       options={{
         tabBarLabel: 'Favorites',
         tabBarIcon: ({ color }) => (
-          <MaterialIcons name="favorite" size={24} color={color} />
+          <MaterialIcons name="favorite" size={27} color={color} />
         ),
         tabBarColor: 'lightblue',
       }}
@@ -51,7 +51,7 @@ export const MainTabNavigator = () => (
       options={{
         tabBarLabel: 'Profile',
         tabBarIcon: ({ color }) => (
-          <MaterialIcons name="person" size={24} color={color} />
+          <MaterialIcons name="person" size={30} color={color} />
         ),
         tabBarColor: '#454B4A',
       }}

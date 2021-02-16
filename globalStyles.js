@@ -12,7 +12,6 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    fontSize: 18,
     borderRadius: 30,
     width: '100%',
   },
@@ -49,7 +48,7 @@ export const globalStyles = StyleSheet.create({
   },
   signupButton: {
     backgroundColor: '#089D8B',
-    borderRadius: 30,
+    borderRadius: 25,
     padding: 14,
     width: 340,
     marginBottom: 15,
