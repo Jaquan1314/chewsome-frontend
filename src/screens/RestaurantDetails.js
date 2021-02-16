@@ -103,6 +103,7 @@ const RestaurantDetails = (props) => {
           </TouchableOpacity>
         </View>
       </Tile>
+      {/* Reviews */}
       <View>
         <Text style={{ textAlign: 'center', fontSize: 15, marginTop: 10 }}>
           Reviews
@@ -130,7 +131,9 @@ const RestaurantDetails = (props) => {
             This Restaurant has no reviews, be the first !
           </Text>
         ) : (
-          <Card>{allReviews}</Card>
+          <Card containerStyle={{ borderColor: 'white', borderWidth: 0 }}>
+            {allReviews}
+          </Card>
         )}
         <Modal
           isVisible={isModalVisible}

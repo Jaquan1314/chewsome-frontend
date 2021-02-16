@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Input } from 'react-native-elements';
 import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
@@ -10,7 +10,7 @@ import groupJunkFood from '../../assets/group-junk-food.jpg';
 
 const Login = (props) => {
   return (
-    <View style={globalStyles.appContainer}>
+    <ScrollView style={globalStyles.appContainer}>
       <View stlye={globalStyles.container}>
         {/* Login Screen Image */}
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -89,7 +89,7 @@ const Login = (props) => {
           )}
         </Formik>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
