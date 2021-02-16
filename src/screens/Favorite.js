@@ -17,8 +17,8 @@ const Favorite = (props) => {
   ));
 
   return (
-    <ScrollView style={{ ...styles.container, backgroundColor: '#fff' }}>
-      <View style={styles.viewCont}>{allFavorites}</View>
+    <ScrollView style={{ backgroundColor: '#fff' }}>
+      <View style={styles.container}>{allFavorites}</View>
     </ScrollView>
   );
 };
@@ -38,13 +38,8 @@ const mdp = (dispatch) => {
 
 export default connect(msp, mdp)(Favorite);
 const styles = StyleSheet.create({
-  scrollContainer: {
-    // flex: 1,
+  container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  viewCont: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
