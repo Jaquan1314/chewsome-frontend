@@ -16,10 +16,8 @@ const Landing = ({ navigation }) => {
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text
             style={{
-              fontSize: 40,
-              // position: 'absolute',
-              fontWeight: '300',
-              // bottom: 110,
+              fontSize: 45,
+              fontWeight: '500',
               textAlign: 'center',
             }}
           >
@@ -52,6 +50,7 @@ const Landing = ({ navigation }) => {
           >
             <Text style={globalStyles.buttonText}>Login</Text>
           </TouchableOpacity>
+          {/* SignUp Btn */}
           <TouchableOpacity
             style={globalStyles.signupButton}
             onPress={() => {
@@ -60,6 +59,7 @@ const Landing = ({ navigation }) => {
           >
             <Text style={globalStyles.buttonText}>Sign up</Text>
           </TouchableOpacity>
+          {/* Google Btn */}
           <TouchableOpacity
             style={globalStyles.googleSigninButton}
             onPress={() => {
