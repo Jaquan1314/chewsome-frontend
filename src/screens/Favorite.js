@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import FavoriteCard from '../Component/FavoriteCard';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { getFavorites } from '../redux/actions/index';
 import { connect } from 'react-redux';
 
@@ -17,9 +17,26 @@ const Favorite = (props) => {
   ));
 
   return (
-    <ScrollView style={{ backgroundColor: '#fff' }}>
-      <View style={styles.container}>{allFavorites}</View>
-    </ScrollView>
+    <>
+      {favorites.length === 0 ? (
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 25,
+            }}
+          >
+            Your fav restaurants will appear here !
+          </Text>
+        </View>
+      ) : (
+        <ScrollView style={{ backgroundColor: '#fff' }}>
+          <View style={styles.container}>{allFavorites}</View>
+        </ScrollView>
+      )}
+    </>
   );
 };
 
