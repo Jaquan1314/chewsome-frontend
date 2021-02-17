@@ -26,6 +26,7 @@ const Login = (props) => {
         >
           {(formikProps) => (
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              {/* Email Input */}
               <Input
                 inputContainerStyle={{
                   ...globalStyles.input,
@@ -43,6 +44,8 @@ const Login = (props) => {
                     color="#454B4A"
                   />
                 }
+                keyboardType="email-address"
+                textContentType="emailAddress"
                 placeholder="Email"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('email')}
@@ -51,7 +54,7 @@ const Login = (props) => {
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
-
+              {/* Password Input */}
               <Input
                 inputStyle={{
                   textAlign: 'center',
@@ -69,6 +72,8 @@ const Login = (props) => {
                     color="#454B4A"
                   />
                 }
+                secureTextEntry={true}
+                textContentType="password"
                 placeholder="Password"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('password')}
@@ -77,6 +82,7 @@ const Login = (props) => {
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
+              {/* Login Button */}
               <TouchableOpacity
                 style={{
                   ...globalStyles.signinButton,
