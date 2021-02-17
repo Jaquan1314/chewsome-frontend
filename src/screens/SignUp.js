@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Input } from 'react-native-elements';
 import { Formik } from 'formik';
 import { globalStyles } from '../../globalStyles';
@@ -8,9 +8,9 @@ import { signUp } from '../redux/actions/index';
 import { connect } from 'react-redux';
 import manWithChicken from '../../assets/man-with-chicken.jpg';
 
-const SignUp = () => {
+const SignUp = (props) => {
   return (
-    <View style={globalStyles.appContainer}>
+    <ScrollView style={globalStyles.appContainer}>
       <View stlye={globalStyles.container}>
         {/* SignUp Screen Image */}
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -21,6 +21,7 @@ const SignUp = () => {
           initialValues={{ username: '', email: '', password: '' }}
           onSubmit={(values) => {
             props.signUp(values);
+            props.navigation.navigate('Home');
           }}
         >
           {(formikProps) => (
@@ -43,11 +44,12 @@ const SignUp = () => {
                     color="#454B4A"
                   />
                 }
+                textContentType="username"
                 placeholder="Username"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('username')}
                 onBlur={formikProps.handleBlur('username')}
-                value={formikProps.values.email}
+                value={formikProps.values.username}
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
@@ -69,6 +71,8 @@ const SignUp = () => {
                     color="#454B4A"
                   />
                 }
+                keyboardType="email-address"
+                textContentType="emailAddress"
                 placeholder="Email"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('email')}
@@ -95,6 +99,8 @@ const SignUp = () => {
                     color="#454B4A"
                   />
                 }
+                secureTextEntry={true}
+                textContentType="password"
                 placeholder="Password"
                 placeholderTextColor="white"
                 onChangeText={formikProps.handleChange('password')}
@@ -103,6 +109,7 @@ const SignUp = () => {
                 selectionColor="#454B4A"
                 autoCapitalize="none"
               />
+              {/* SignUp Button */}
               <TouchableOpacity
                 style={{
                   ...globalStyles.signupButton,
@@ -115,7 +122,7 @@ const SignUp = () => {
           )}
         </Formik>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
