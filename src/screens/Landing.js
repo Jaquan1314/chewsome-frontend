@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { globalStyles } from '../../globalStyles';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
-import signInWithGoogleAsync from '../redux/actions/index';
+import { signInWithGoogleAsync } from '../redux/actions/index';
 import hotDogSoda from '../../assets/hot-dog-soda.jpg';
+import { BackHandler } from 'react-native';
 
 const signInWithGoogle = () => {
   signInWithGoogleAsync();
 };
 
 const Landing = ({ navigation }) => {
+  const [disabled, setDisabled] = useState(true);
+
   return (
     <View style={globalStyles.appContainer}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -60,15 +63,27 @@ const Landing = ({ navigation }) => {
             <Text style={globalStyles.buttonText}>Sign up</Text>
           </TouchableOpacity>
           {/* Google Btn */}
-          <TouchableOpacity
-            style={globalStyles.googleSigninButton}
-            onPress={() => {
-              signInWithGoogle();
-              // console.log('Getting clicked!');
-            }}
-          >
-            <Text style={globalStyles.buttonText}>Sign in with Google</Text>
-          </TouchableOpacity>
+          {disabled ? (
+            <TouchableOpacity
+              disabled={disabled}
+              style={{
+                ...globalStyles.googleSigninButton,
+                backgroundColor: 'grey',
+              }}
+            >
+              <Text style={globalStyles.buttonText}>Disabled</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                signInWithGoogle();
+                // console.log('Getting clicked!');
+              }}
+              style={globalStyles.googleSigninButton}
+            >
+              <Text style={globalStyles.buttonText}>Sign in with Google</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
