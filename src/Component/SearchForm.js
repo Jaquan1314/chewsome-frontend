@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
-import { search } from '../redux/actions/index';
-import { connect } from 'react-redux';
 
 const SearchForm = (props) => {
   // console.log('SEARCH PROPS', props);
-  const { search, value, restaurants } = props;
+  const { searchHandler, searchValue } = props;
 
   return (
     <View>
@@ -13,28 +11,14 @@ const SearchForm = (props) => {
       <TextInput
         style={styles.input}
         placeholder="Search for a Restaurant"
-        value={value.value}
-        onChange={(e) => {
-          search(e.target.value);
-        }}
+        value={searchValue}
+        onChangeText={(text) => searchHandler(text)}
       />
     </View>
   );
 };
 
-const msp = (state) => {
-  return {
-    value: state.value,
-  };
-};
-
-const mdp = (dispatch) => {
-  return {
-    search: (value) => dispatch(search(value)),
-  };
-};
-
-export default connect(msp, mdp)(SearchForm);
+export default SearchForm;
 
 const styles = StyleSheet.create({
   input: {

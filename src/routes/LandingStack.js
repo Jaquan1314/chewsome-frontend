@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Text } from 'react-native';
 import Landing from '../screens/Landing';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
@@ -60,9 +61,11 @@ export const MainTabNavigator = () => (
 );
 
 export const LandingStack = (props) => {
+  const { logIn } = props;
+
   useEffect(() => {
     // console.log('Console log in Landing Stack', props);
-    props.logIn(undefined);
+    logIn(undefined);
   }, []);
 
   return (
@@ -85,7 +88,16 @@ export const LandingStack = (props) => {
       <Screen
         name="Home"
         component={MainTabNavigator}
-        options={{ headerLeft: null, cardStyle: { backgroundColor: '#fff' } }}
+        options={{
+          title: (
+            <Text style={{ fontSize: 27, fontWeight: '500' }}>
+              chew
+              <Text style={{ fontWeight: '700', color: '#089D8B' }}>some.</Text>
+            </Text>
+          ),
+          headerLeft: null,
+          cardStyle: { backgroundColor: '#fff' },
+        }}
       />
       <Screen
         name="Details"

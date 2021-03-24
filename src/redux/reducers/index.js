@@ -10,7 +10,6 @@ import {
   EMPTY_ARR,
   ADD_REVIEW,
   DELETE_REVIEW,
-  SEARCH,
   GET_REVIEWS,
 } from '../actions/types';
 
@@ -39,19 +38,6 @@ const getRestaurants = (state = initialState.restaurants, action) => {
   switch (action.type) {
     case GET_RESTAURANTS:
       return action.payload;
-    default:
-      return state;
-  }
-};
-
-const searchReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SEARCH:
-      const { value } = action;
-      const restaurants = state.restaurants.filter((val) =>
-        val.name.includes(value.toLowerCase())
-      );
-      return { ...state, value, restaurants };
     default:
       return state;
   }
@@ -90,7 +76,6 @@ const reviewsReducer = (state = initialState.reviews, action) => {
 export const rootReducer = combineReducers({
   user: userReducer,
   restaurants: getRestaurants,
-  value: searchReducer,
   favorites: favoritesReducer,
   reviews: reviewsReducer,
 });

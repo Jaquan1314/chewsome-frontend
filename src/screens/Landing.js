@@ -68,7 +68,7 @@ const Landing = ({ navigation }) => {
               disabled={disabled}
               style={{
                 ...globalStyles.googleSigninButton,
-                backgroundColor: 'grey',
+                backgroundColor: 'lightgrey',
               }}
             >
               <Text style={globalStyles.buttonText}>Disabled</Text>

@@ -18,23 +18,23 @@ import { IOS_CLIENT_ID } from '@env';
 
 const baseUrl = 'http://localhost:3000/api';
 
-export default async function signInWithGoogleAsync() {
+export const signInWithGoogleAsync = async () => {
   try {
-    const result = await Google.logInAsync({
+    const { type, accessToken, idToken, user } = await Google.logInAsync({
       behavior: 'web',
       iosClientId: IOS_CLIENT_ID,
       scopes: ['profile', 'email'],
     });
 
-    if (result.type === 'success') {
-      console.log(result);
+    if (type === 'success') {
+      console.log(user);
     } else {
       return { cancelled: true };
     }
   } catch (e) {
     return { error: true };
   }
-}
+};
 
 export const logIn = (userObj) => (dispatch) => {
   //BEFORE login fetch, check if the userObj being passed is undefined.

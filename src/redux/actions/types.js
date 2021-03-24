@@ -9,4 +9,3 @@ export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
 export const GET_FAVORITES = 'GET_FAVORITES';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 export const DELETE_REVIEW = 'DELETE_REVIEW';
-export const SEARCH = 'SEARCH';

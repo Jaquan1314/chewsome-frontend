@@ -54,6 +54,7 @@ const RestaurantDetails = (props) => {
   }, []);
 
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -87,20 +88,16 @@ const RestaurantDetails = (props) => {
           <TouchableOpacity onPress={handleLinking}>
             <Text style={{ color: 'blue' }}>View more</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              addToFavorite(userId, restaurantId);
-            }}
-          >
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'left',
+          {isFavorite === false ? (
+            <TouchableOpacity
+              onPress={() => {
+                addToFavorite(userId, restaurantId);
+                setFavorite(true);
               }}
             >
-              <MaterialIcons name="favorite" size={24} color="red" />
-            </Text>
-          </TouchableOpacity>
+              <MaterialIcons name="favorite-outline" size={24} color="black" />
+            </TouchableOpacity>
+          ) : null}
         </View>
       </Tile>
       {/* Reviews */}
