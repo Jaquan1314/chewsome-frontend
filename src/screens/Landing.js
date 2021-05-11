@@ -77,7 +77,6 @@ const Landing = ({ navigation }) => {
             <TouchableOpacity
               onPress={() => {
                 signInWithGoogle();
-                // console.log('Getting clicked!');
               }}
               style={globalStyles.googleSigninButton}
             >
